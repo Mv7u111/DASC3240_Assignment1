@@ -78,7 +78,7 @@ tot_abund <- sp %>%
   summarise(across(everything(), ~ sum(.x, na.rm = TRUE))) %>%
   pivot_longer(cols = everything(), names_to = "PLOT", values_to = "TOTAL_ABUND")
 
-# join age + make the same 5 median-age groups as in your photo (7, 20, 39, 61, 70)
+# join age + make the same 5 median-age groups (7, 20, 39, 61, 70)
 dat <- tot_abund %>%
   left_join(env %>% select(PLOT, AGE_MEDIAN), by = "PLOT") %>%
   mutate(
@@ -190,3 +190,4 @@ ggplot(sites_nmds, aes(x = NMDS1, y = NMDS2, color = AGE_CATEGORY)) +
        x = "NMDS1", y = "NMDS2", color = "Age category")
 
 ```
+
